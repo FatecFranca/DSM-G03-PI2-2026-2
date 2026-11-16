@@ -1,0 +1,23 @@
+%% Arquitetura em camadas — Kalix
+flowchart TB
+    subgraph Apresentacao["Camada de Apresentação · frontend/"]
+        R["React + Vite<br/>App.jsx (telas e componentes)"]
+        A["api.js<br/>(cliente HTTP / tratamento de erros)"]
+    end
+    subgraph Aplicacao["Camada de Aplicação · backend/"]
+        M["main.py — Controllers<br/>(rotas REST FastAPI)"]
+        S["schemas.py — DTOs<br/>(validação Pydantic)"]
+        SE["security.py<br/>(PBKDF2 + JWT)"]
+    end
+    subgraph Dados["Camada de Persistência · backend/ + database/"]
+        MO["models.py — Entidades ORM<br/>(SQLAlchemy)"]
+        D["database.py<br/>(engine + sessão por requisição)"]
+        DB[("MySQL 8 · kalix_db<br/>schema.sql + migrations + views/triggers")]
+    end
+    R --> A
+    A -- "HTTP/JSON + Bearer token" --> M
+    M --> S
+    M --> SE
+    M --> MO
+    MO --> D
+    D --> DB

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel do Proprietário — Kalix</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
+</head>
+<body class="site" data-page="painel">
+  <header data-site-header></header>
+
+  <main class="site-main wide">
+    <div class="dashboard">
+      <aside class="sidebar">
+        <div data-brand></div>
+
+        <div class="sidebar-nav">
+          <div class="sidebar-item active">▦ Agenda</div>
+          <div class="sidebar-item">♙ Clientes</div>
+          <div class="sidebar-item">✂ Serviços</div>
+          <div class="sidebar-item">⚙ Configurações</div>
+        </div>
+
+        <div class="sidebar-account">
+          <div class="card row">
+            <span class="avatar">KE</span>
+            <div>
+              <h4 class="small">Kalon Estética SP</h4>
+              <p class="muted small">Proprietário (Admin)</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="dashboard-main">
+        <div class="dashboard-heading">
+          <div>
+            <h2>Visão Geral da Agenda</h2>
+            <p>
+              Controle de atendimentos e bloqueios operacionais
+              em tempo real.
+            </p>
+          </div>
+
+          <div class="row">
+            <div class="action outline compact">Bloquear Horário</div>
+            <div class="action compact">＋ Novo Agendamento</div>
+          </div>
+        </div>
+
+        <div class="metrics">
+          <div class="metric">
+            <p class="muted">Agendamentos Hoje</p>
+            <strong>34</strong>
+            <p><b class="teal">+12%</b> <span class="subtle">vs ontem</span></p>
+          </div>
+
+          <div class="metric">
+            <p class="muted">Faturamento Hoje</p>
+            <strong>R$ 4.250</strong>
+            <p>
+              <b class="teal">+18%</b>
+              <span class="subtle">vs média seg</span>
+            </p>
+          </div>
+
+          <div class="metric">
+            <p class="muted">Taxa de Ocupação</p>
+            <strong>88%</strong>
+            <p>
+              <b class="teal">Excelente</b>
+              <span class="subtle">capacidade máxima</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="dashboard-body">
+          <section class="agenda-panel">
+            <div class="agenda-title">
+              <h3>Segunda-feira, 30 de Outubro</h3>
+              <span class="badge red">HOJE</span>
+            </div>
+
+            <div class="agenda-scroll">
+              <table class="agenda-table" aria-label="Agenda ilustrativa">
+                <thead>
+                  <tr>
+                    <th scope="col">Hora</th>
+                    <th scope="col">
+                      Mariana Silva
+                      <small>Esteticista Facial</small>
+                    </th>
+                    <th scope="col">
+                      Dra. Paula Costa
+                      <small>Dermatologista</small>
+                    </th>
+                    <th scope="col">
+                      Roberto Nunes
+                      <small>Massoterapeuta</small>
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>09:00</td>
+
+                    <td class="booked">
+                      <div class="event-top">
+                        <span>Ana Beatriz</span><span>R$ 150</span>
+                      </div>
+                      <p>Limpeza de Pele Deep</p>
+                      <span class="event-status">● CONFIRMADO</span>
+                    </td>
+
+                    <td class="booked" rowspan="2">
+                      <div class="event-top">
+                        <span>Juliana Mendes</span><span>R$ 980</span>
+                      </div>
+                      <p>Toxina Botulínica</p>
+                      <span class="event-status">● CONFIRMADO</span>
+                    </td>
+
+                    <td class="free">Disponível</td>
+                  </tr>
+
+                  <tr>
+                    <td>10:00</td>
+                    <td class="free">Disponível</td>
+
+                    <td class="pending">
+                      <div class="event-top">
+                        <span>Gabriel Lima</span><span>R$ 140</span>
+                      </div>
+                      <p>Massagem Modeladora</p>
+                      <span class="event-status">● PENDENTE</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>11:00</td>
+
+                    <td class="pending">
+                      <div class="event-top">
+                        <span>Carla Souza</span><span>R$ 180</span>
+                      </div>
+                      <p>Peeling de Diamante</p>
+                      <span class="event-status">● PENDENTE</span>
+                    </td>
+
+                    <td class="free">Disponível</td>
+
+                    <td class="booked">
+                      <div class="event-top">
+                        <span>Patricia Cruz</span><span>R$ 130</span>
+                      </div>
+                      <p>Drenagem Linfática</p>
+                      <span class="event-status">● CONFIRMADO</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>12:00</td>
+                    <td class="block">⊘ Bloqueio: Intervalo Almoço</td>
+                    <td class="free">Disponível</td>
+                    <td class="free">Disponível</td>
+                  </tr>
+
+                  <tr>
+                    <td>13:00</td>
+                    <td class="free">Disponível</td>
+                    <td class="block">⊘ Bloqueio: Reunião Clínica</td>
+                    <td class="block">⊘ Bloqueio: Intervalo Almoço</td>
+                  </tr>
+
+                  <tr>
+                    <td>14:00</td>
+
+                    <td class="booked" rowspan="2">
+                      <div class="event-top">
+                        <span>Daniela Reis</span><span>R$ 320</span>
+                      </div>
+                      <p>Microagulhamento</p>
+                      <span class="event-status">● CONFIRMADO</span>
+                    </td>
+
+                    <td class="free">Disponível</td>
+                    <td class="free">Disponível</td>
+                  </tr>
+
+                  <tr>
+                    <td>15:00</td>
+                    <td class="free">Disponível</td>
+                    <td class="free">Disponível</td>
+                  </tr>
+
+                  <tr>
+                    <td>16:00</td>
+                    <td class="free">Disponível</td>
+
+                    <td class="booked">
+                      <div class="event-top">
+                        <span>Marcia Alves</span><span>R$ 1.200</span>
+                      </div>
+                      <p>Preenchimento Labial</p>
+                      <span class="event-status">● CONFIRMADO</span>
+                    </td>
+
+                    <td class="booked" rowspan="2">
+                      <div class="event-top">
+                        <span>Fernanda Costa</span><span>R$ 220</span>
+                      </div>
+                      <p>Massagem Relaxante</p>
+                      <span class="event-status">● CONFIRMADO</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>17:00</td>
+                    <td class="free">Disponível</td>
+                    <td class="free">Disponível</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="clients-panel">
+            <h3>Últimos Clientes</h3>
+            <p class="muted small">Atividades e históricos recentes.</p>
+
+            <div class="client-list">
+              <div class="client-card">
+                <div class="row between">
+                  <div>
+                    <h4>Ana Beatriz</h4>
+                    <p class="muted">(11) 98765-4321</p>
+                  </div>
+                  <span class="badge">8 visitas</span>
+                </div>
+                <div class="row between">
+                  <span class="subtle">Último: Limpeza de Pele</span>
+                  <span class="red">Ver Histórico →</span>
+                </div>
+              </div>
+
+              <div class="client-card">
+                <div class="row between">
+                  <div>
+                    <h4>Carla Souza</h4>
+                    <p class="muted">(11) 97122-8833</p>
+                  </div>
+                  <span class="badge">2 visitas</span>
+                </div>
+                <div class="row between">
+                  <span class="subtle">Último: Peeling</span>
+                  <span class="red">Ver Histórico →</span>
+                </div>
+              </div>
+
+              <div class="client-card">
+                <div class="row between">
+                  <div>
+                    <h4>Juliana Mendes</h4>
+                    <p class="muted">(11) 99311-2244</p>
+                  </div>
+                  <span class="badge">14 visitas</span>
+                </div>
+                <div class="row between">
+                  <span class="subtle">Último: Dermatologia</span>
+                  <span class="red">Ver Histórico →</span>
+                </div>
+              </div>
+
+              <div class="client-card">
+                <div class="row between">
+                  <div>
+                    <h4>Patricia Cruz</h4>
+                    <p class="muted">(11) 98111-5544</p>
+                  </div>
+                  <span class="badge">5 visitas</span>
+                </div>
+                <div class="row between">
+                  <span class="subtle">Último: Massagem</span>
+                  <span class="red">Ver Histórico →</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <p class="site-note">
+          Dados ilustrativos do design, sem atualização em tempo real.
+        </p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,44 @@
+// Diagrama de Casos de Uso — Kalix  (gerado com Graphviz: dot -Tpng casos_de_uso.dot -o casos_de_uso.png)
+digraph casos_de_uso {
+  rankdir=LR; splines=true; nodesep=0.35; ranksep=1.1;
+  fontname="Helvetica"; node [fontname="Helvetica", fontsize=12]; edge [fontname="Helvetica", fontsize=10, arrowhead=none, color="#444444"];
+  label=<<b>Kalix — Diagrama de Casos de Uso</b><br/><font point-size="10">Tracejado cinza = planejado (ainda não implementado)</font>>; labelloc=t; fontsize=16;
+
+  node [shape=none, image="actor.png", imagescale=false, labelloc=b, height=1.6, width=0.9, fixedsize=true];
+  visitante [label="Visitante"];
+  cliente   [label="Cliente"];
+  gestor    [label="Gestor do\nEstabelecimento", width=1.5];
+
+  subgraph cluster_sistema {
+    label=<<b>Sistema Kalix</b>>; style=rounded; color="#7a1f1f"; penwidth=1.5; fontsize=13;
+    node [shape=ellipse, image="", fixedsize=false, height=0.5, width=0, style=filled, fillcolor="#fdf1f0", color="#b23a33"];
+    uc01 [label="UC01\nPesquisar catálogo"];
+    uc02 [label="UC02\nCriar conta / Entrar"];
+    uc04 [label="UC04\nReservar serviço"];
+    cash [label="Usar cashback"];
+    uc10 [label="Consultar / cancelar\nminhas reservas"];
+    auth [label="Autenticar\n(token JWT)"];
+    uc03 [label="UC03 Gerenciar serviços\n(cadastrar, listar, excluir)"];
+    uc09 [label="UC09 Gerenciar equipe\n(cadastrar, ativar/desativar)"];
+    uc05 [label="UC05 Gerenciar agenda\n(bloquear, alterar status)"];
+    uc11 [label="Ver resumo do painel"];
+    uc12 [label="Atualizar dados do\nestabelecimento"];
+    uc06 [label="UC06\nAvaliar atendimento", style="dashed,filled", fillcolor="#f4f4f4", color="#999999", fontcolor="#777777"];
+    uc07 [label="UC07\nAssinar clube", style="dashed,filled", fillcolor="#f4f4f4", color="#999999", fontcolor="#777777"];
+  }
+
+  visitante -> uc01; visitante -> uc02;
+  cliente -> uc04; cliente -> uc10;
+  cliente -> uc06 [style=dashed, color="#999999"]; cliente -> uc07 [style=dashed, color="#999999"];
+  gestor -> uc03; gestor -> uc09; gestor -> uc05; gestor -> uc11; gestor -> uc12;
+
+  edge [style=dashed, arrowhead=vee, color="#555555"];
+  uc04 -> auth [label="«include»"];
+  uc10 -> auth [label="«include»"];
+  uc03 -> auth [label="«include»"];
+  uc05 -> auth [label="«include»"];
+  cash -> uc04 [label="«extend»"];
+
+  edge [style=solid, arrowhead=onormal, arrowsize=1.4, color="#333333"];
+  cliente -> visitante [label="herda", constraint=false];
+}

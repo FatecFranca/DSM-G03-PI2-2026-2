@@ -1,0 +1,32 @@
+%% Diagrama de Sequência — Reservar serviço (POST /agendamentos)
+sequenceDiagram
+    autonumber
+    actor Cliente
+    participant UI as Frontend React<br/>(App.jsx / api.js)
+    participant API as API FastAPI<br/>(main.py)
+    participant Sec as security.py
+    participant ORM as SQLAlchemy<br/>(models.py)
+    participant DB as MySQL
+
+    Cliente->>UI: Escolhe serviço, data/hora,<br/>pagamento e cashback
+    UI->>API: POST /agendamentos<br/>Authorization: Bearer <token>
+    API->>Sec: decode_access_token(token)
+    Sec-->>API: {sub: id_usuario, role: "cliente"}
+    API->>ORM: buscar ProfissionalServico, Profissional<br/>(SELECT ... FOR UPDATE), Servico
+    ORM->>DB: SELECT
+    DB-->>ORM: registros
+    ORM-->>API: objetos
+    API->>API: calcula fim = início + duração<br/>valida preço e limite de 30% do cashback
+    API->>ORM: verifica conflito de horário<br/>(intervalos sobrepostos)
+    ORM->>DB: SELECT agendamento
+    DB-->>ORM: resultado
+    alt horário ocupado ou regra violada
+        API-->>UI: 409 / 422 com mensagem
+        UI-->>Cliente: Exibe erro
+    else horário livre
+        API->>ORM: INSERT Agendamento<br/>e debita saldo_cashback
+        ORM->>DB: COMMIT
+        DB-->>ORM: OK
+        API-->>UI: 201 Created (AgendamentoResponse)
+        UI-->>Cliente: Reserva confirmada
+    end

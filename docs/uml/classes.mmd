@@ -1,0 +1,114 @@
+%% Diagrama de Classes — domínio do Kalix (backend/models.py)
+classDiagram
+    direction LR
+    class Estabelecimento {
+        +int id_estabelecimento
+        +str nome_fantasia
+        +str cnpj
+        +str categoria
+        +str publico_alvo
+        +str endereco_completo
+        +decimal latitude
+        +decimal longitude
+        +decimal saldo_devedor
+        +bool status_ativo
+        +datetime data_cadastro
+    }
+    class ContaEstabelecimento {
+        +int id_conta
+        +str email
+        +str senha_hash
+    }
+    class Profissional {
+        +int id_profissional
+        +str nome
+        +str cpf
+        +bool status_ativo
+        +bool eh_dono
+    }
+    class Servico {
+        +int id_servico
+        +str nome_servico
+        +str descricao
+        +int duracao_estimada_minutos
+    }
+    class ProfissionalServico {
+        +int id_profissional_servico
+        +decimal preco
+    }
+    class CarteiraUsuario {
+        +int id_usuario
+        +str nome_completo
+        +str email
+        +str senha_hash
+        +str preferencia_publico
+        +decimal saldo_cashback
+        +int pontos_gamificacao
+        +bool status_ativo
+    }
+    class Agendamento {
+        +int id_agendamento
+        +datetime data_hora_inicio
+        +datetime data_hora_fim
+        +StatusAgendamento status_agendamento
+        +MetodoPagamento metodo_pagamento
+        +decimal valor_final_cobrado
+        +decimal cashback_utilizado
+    }
+    class Avaliacao {
+        +int id_avaliacao
+        +bool selo_servico
+        +bool selo_ambiente
+        +str critica_privada
+        +bool cashback_liberado
+    }
+    class Plano {
+        +int id_plano
+        +str nome_plano
+        +decimal preco_mensal
+        +int qtd_servico_mes
+    }
+    class OfertaPlano {
+        +int id_oferta_plano
+        +bool status_ativo
+        +decimal comissao_local
+    }
+    class AssinaturaAtiva {
+        +int id_assinatura
+        +int servicos_restantes
+        +date data_renovacao
+        +str status_pagamento
+    }
+    class StatusAgendamento {
+        <<enumeration>>
+        AGENDADO
+        BLOQUEIO_MANUAL
+        CONCLUIDO
+        CANCELADO
+        NO_SHOW
+    }
+    class MetodoPagamento {
+        <<enumeration>>
+        PIX
+        CARTAO_CREDITO
+        DINHEIRO
+        ASSINATURA
+        BLOQUEIO
+    }
+
+    Estabelecimento "1" *-- "1" ContaEstabelecimento : possui
+    Estabelecimento "1" o-- "1..*" Profissional : emprega
+    Profissional "1" -- "0..*" ProfissionalServico : oferece
+    Servico "1" -- "0..*" ProfissionalServico : é oferecido em
+    Profissional "1" -- "0..*" Agendamento : atende
+    CarteiraUsuario "0..1" -- "0..*" Agendamento : reserva
+    ProfissionalServico "0..1" -- "0..*" Agendamento : refere-se a
+    Agendamento "1" *-- "0..1" Avaliacao : recebe
+    Estabelecimento "1" *-- "0..*" Plano : cria
+    Profissional "0..1" -- "0..*" Plano : vinculado a
+    Estabelecimento "1" -- "0..*" OfertaPlano : divulga
+    Plano "1" -- "0..*" OfertaPlano
+    CarteiraUsuario "1" -- "0..*" AssinaturaAtiva : assina
+    Plano "1" -- "0..*" AssinaturaAtiva
+    Agendamento ..> StatusAgendamento
+    Agendamento ..> MetodoPagamento
